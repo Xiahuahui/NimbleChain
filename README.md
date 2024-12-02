@@ -2,7 +2,14 @@
 
 ### Intro
 
+### Directories
 
+> - /sourcecodes: source codes of different blockchain systems and agent-side
+> - /build: blockchain system generates executable binary files and configuration files
+> - /ansible: these playbook.yaml file is used for deploying systems with Ansible
+> - /docker-compose: docker-compose files are used to deploy blockchain systems
+> - /templates: template files for generating configuration files and docker-compose files
+> - ansible.cfg and hosts: is used to manage different servers
 
 ### Runtime（all node）
 
