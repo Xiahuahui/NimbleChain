@@ -90,7 +90,7 @@
 
    # setup work environment nodes host B、C
    # !!! 这个操作会关闭目标主机B、C的docker服务，并开放docker服务的远程访问权限、替换daemon.json和docker service
-   # 1. update docker config [use reomte docker stat api]
+   # update docker config [use reomte docker stat api]
    make setup-config
    ```
 - 启动 tendermint 网络进行测试
