@@ -1,0 +1,1 @@
+scp -r result/$1 xiahuahui@10.46.224.60:/home/xiahuahui/tendermint_deploy_tool/build/restult

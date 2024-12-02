@@ -1,0 +1,13 @@
+---
+# 保存docker的日志
+- hosts: dt
+  remote_user: root
+
+  tasks:
+  # #将镜像通过tar文件load出来  
+  - name: save per docker log
+    shell: bash {{work_dir}}/build/save-log.sh EMA-delay-32-1-10-n
+
+
+  # - name: download log 
+  #   shell: bash {{work_dir}}/build/download-log.sh test-1m-16

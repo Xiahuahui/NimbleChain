@@ -1,0 +1,31 @@
+  node0:
+    container_name: node0
+    image: "{tag}"
+    privileged: true
+    command: ["{delay_flag}", "{delay_time}", "{jitter_flag}", "{jitter_time}", "{testtc_flag}", "{cc_flag}", "{cc_space}", "{cc_delay}", "{cc_dis}", "{multiple}", "node", "--proxy_app", "{Application}"]
+    ports:
+      - "26656-26657:26656-26657"
+      - "6060:6060"
+      - "27000:26660"
+    # extra_hosts:
+    environment:
+      - ID=0
+      - MODE=docker
+      - LOG=${LOG}
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - ./build/binary/{binary-tag}:/tendermint:Z
+      - ./build/config_path:/config_path
+      - ./build/service/{service}:/etc/pcc
+      - ./build/cc:/etc/cc
+    deploy:
+      resources:
+        limits:
+          cpus: '{cpus}'
+          memory: 4G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.2       

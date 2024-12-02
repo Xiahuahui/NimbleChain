@@ -1,0 +1,15 @@
+version: '3'
+
+config:
+  tag: tendermint:test #镜像的版本的版本
+  core_num: 8     #  实验中的docker核数
+  block_size: 10000     #  实验中的区块大小
+  binary_tag: propose_timeout  #测试的tendermint的版本
+  app: kvstore     #abci端的应用类型
+  propose_timeout: 5 #每个节点上设置的初始化的propose_timeout 5s
+  service: fixed     #动态调整timeout的方式 [fixed、FireLedger、NimbleChain-J、NimbleChain-NA、NimbleChain-Full]
+  ByzantineNodeList: []  #拜占庭节点列表
+  CrashNodeList: [0, 3, 6, 9, 12, 15, 18, 22, 26, 29]     # 宕机节点列表
+  reward:
+    version: "v3"    #奖励函数的版本
+    para: -2         #奖励函数中a的设置

@@ -1,0 +1,53 @@
+---
+- hosts: dt
+  remote_user: root
+  become: yes
+  
+  tasks:
+  - name: Copy binary to {{work_dir}}/build/binary/{{binary_dir}}
+    copy: src=/home/xiahuahui/tendermint_deploy_tool/build/binary/{{binary_dir}} dest={{work_dir}}/build/binary
+          force=true
+    become: yes
+  - name: Change file permissions
+    become: yes
+    file:
+      path: "{{work_dir}}/build/binary/{{binary_dir}}/tendermint"
+      mode: '777'
+  
+  - name: Copy c_c to {{work_dir}}/build
+    copy: src=/home/xiahuahui/tendermint_deploy_tool/build/cc dest={{work_dir}}/build
+          force=true
+
+  - name: Copy Tendermint to {{work_dir}}/build
+    copy: src={{config_path}} dest={{work_dir}}/build
+          force=true
+  
+  - name: Change file permissions
+    become: yes
+    file:
+      path: "{{work_dir}}/build/config_path"
+      mode: '777'
+# 如果有权限问题 修改目标机器上的文件权限 777
+  - name: Copy service to {{work_dir}}/service/{service_dir}
+    copy: src=/home/xiahuahui/tendermint_deploy_tool/build/service/{{service_dir}} dest={{work_dir}}/build/service
+          force=true
+  
+  - name: Change file permissions
+    become: yes
+    file:
+      path: "{{work_dir}}/build/service"
+      mode: '777'
+  
+  - name: Change file permissions
+    become: yes
+    file:
+      path: "{{work_dir}}/build/service/{{service_dir}}"
+      mode: '777'
+
+  - name: Copy docker config to {{work_dir}}
+    copy: src={{s_d_c_d}}/{{ip}}.yaml dest={{work_dir}}/docker-compose.yaml
+          force=true
+  
+  - name: start-tendermint-network
+    shell: docker-compose -f {{work_dir}}/docker-compose.yaml up -d
+    

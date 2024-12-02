@@ -1,0 +1,18 @@
+---
+- hosts: dt
+  remote_user: root
+
+  tasks:
+  - name: mkdir into {{work_dir}}/images
+    shell: mkdir -p {{work_dir}}/images
+    ignore_errors: True
+
+  # 在使用过程中src要换成自己的镜像路径
+  - name: Copy docker images into {{work_dir}}/images
+    # dest = {{work_dir}} - images 复制的应该是整个目录
+    copy: src={{images_path}}/tendermint_base_new.tar dest={{work_dir}}/images
+          force=true  # 是否强制更新，false如果存在则不更新
+  
+  # #将镜像通过tar文件load出来  
+  - name: docker load [tendermint] {{work_dir}}/images
+    shell: docker load --input {{work_dir}}/images/tendermint_base_new.tar

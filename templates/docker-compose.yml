@@ -1,0 +1,806 @@
+  node1:
+    container_name: node1
+    image: "tendermint/base"
+    ports:
+      - "26659-26660:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 1
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node1/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.3
+
+  node2:
+    container_name: node2
+    image: "tendermint/base"
+    ports:
+      - "26661-26662:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 2
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node2/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.4
+
+  node3:
+    container_name: node3
+    image: "tendermint/base"
+    ports:
+      - "26663-26664:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 3
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node3/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.5
+
+  node4:
+    container_name: node4
+    image: "tendermint/base"
+    ports:
+      - "26665-26666:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 4
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node4/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.6
+
+  node5:
+    container_name: node5
+    image: "tendermint/base"
+    ports:
+      - "26667-26668:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 5
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node5/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.7
+
+  node6:
+    container_name: node6
+    image: "tendermint/base"
+    ports:
+      - "26669-26670:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 6
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node6/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.8
+
+  node7:
+    container_name: node7
+    image: "tendermint/base"
+    ports:
+      - "26671-26672:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 7
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node7/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.9
+
+  node8:
+    container_name: node8
+    image: "tendermint/base"
+    ports:
+      - "26673-26674:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 8
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node8/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.10
+
+  node9:
+    container_name: node9
+    image: "tendermint/base"
+    ports:
+      - "26675-26676:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 9
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node9/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.11
+
+  node10:
+    container_name: node10
+    image: "tendermint/base"
+    ports:
+      - "26677-26678:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 10
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node10/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.12
+
+  node11:
+    container_name: node11
+    image: "tendermint/base"
+    ports:
+      - "26679-26680:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 11
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node11/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.13
+
+  node12:
+    container_name: node12
+    image: "tendermint/base"
+    ports:
+      - "26681-26682:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 12
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node12/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.14
+
+  node13:
+    container_name: node13
+    image: "tendermint/base"
+    ports:
+      - "26683-26684:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 13
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node13/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.15
+
+  node14:
+    container_name: node14
+    image: "tendermint/base"
+    ports:
+      - "26685-26686:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 14
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node14/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.16
+
+  node15:
+    container_name: node15
+    image: "tendermint/base"
+    ports:
+      - "26687-26688:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 15
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node15/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.17
+
+  node16:
+    container_name: node16
+    image: "tendermint/base"
+    ports:
+      - "26689-26690:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 16
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node16/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.18
+
+  node17:
+    container_name: node17
+    image: "tendermint/base"
+    ports:
+      - "26691-26692:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 17
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node17/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.19
+
+  node18:
+    container_name: node18
+    image: "tendermint/base"
+    ports:
+      - "26693-26694:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 18
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node18/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.20
+
+  node19:
+    container_name: node19
+    image: "tendermint/base"
+    ports:
+      - "26695-26696:26656-26657"
+    extra_hosts:
+      - "node0:10.186.20.19"
+      - "node1:10.186.20.24"
+      - "node2:10.186.20.19"
+      - "node3:10.186.20.24"
+      - "node4:10.186.20.19"
+      - "node5:10.186.20.24"
+      - "node6:10.186.20.19"
+      - "node7:10.186.20.24"
+      - "node8:10.186.20.19"
+      - "node9:10.186.20.24"
+      - "node10:10.186.20.19"
+      - "node11:10.186.20.24"
+      - "node12:10.186.20.19"
+      - "node13:10.186.20.24"
+      - "node14:10.186.20.19"
+      - "node15:10.186.20.24"
+      - "node16:10.186.20.19"
+      - "node17:10.186.20.24"
+      - "node18:10.186.20.19"
+      - "node19:10.186.20.24"
+    environment:
+      - ID= 19
+      - LOG=${LOG:-tendermint.log}
+    volumes:
+      - ./build/node19/config:/root/.tendermint/config
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 2G
+        reservations:
+          memory: 200M
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.21
+
+networks:
+  localnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        -
+          subnet: 192.167.10.0/24

@@ -1,0 +1,1 @@
+/home/xhh/tendemrint_env/build/tm-load-test -c 1 -T 20 -r 100 -s 250 --broadcast-tx-method async --endpoints ws://localhost:26657/websocket,ws://localhost:26660/websocket,ws://localhost:26662/websocket

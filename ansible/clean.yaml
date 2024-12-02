@@ -1,0 +1,8 @@
+---
+- hosts: dt
+  remote_user: root
+  tasks:
+  - name: rm -rf {{work_dir}}
+    shell: rm -rf {{work_dir}}
+    # ignore_errors: True
+

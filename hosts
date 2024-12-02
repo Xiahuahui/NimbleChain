@@ -1,0 +1,3 @@
+[dt]
+10.77.110.163 ansible_user=xhh ip=10.77.110.163 work_dir=/home/xhh/tendemrint_env nfs_server=10.46.224.60 s_d_c_d=/home/xiahuahui/tendermint_deploy_tool/docker-compose images_path=/home/xiahuahui/tendermint_deploy_tool/images config_path=/home/xiahuahui/tendermint_deploy_tool/build/config_path binary_dir=propose_timeout service_dir=pcc
+10.77.110.164 ansible_user=xhh ip=10.77.110.164 work_dir=/home/xhh/tendemrint_env nfs_server=10.46.224.60 s_d_c_d=/home/xiahuahui/tendermint_deploy_tool/docker-compose images_path=/home/xiahuahui/tendermint_deploy_tool/images config_path=/home/xiahuahui/tendermint_deploy_tool/build/config_path binary_dir=propose_timeout service_dir=pcc

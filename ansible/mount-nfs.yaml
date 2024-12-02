@@ -1,0 +1,15 @@
+---
+- hosts: dt
+  remote_user: root
+
+  tasks:
+  - name: mkdir into {{work_dir}}/build
+    shell: mkdir -p {{work_dir}}/build
+    ignore_errors: True
+
+  #- name: apt install nfs-common
+  #  shell: apt install -y nfs-common 
+  #  ignore_errors: True
+
+  - name: mount {{nfs_server}}:/ to  {{work_dir}}/build
+    shell: sudo mount -t nfs {{nfs_server}}:/ {{work_dir}}/build

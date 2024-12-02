@@ -1,0 +1,7 @@
+---
+- hosts: dt
+  remote_user: root
+  tasks:
+  - name: mkdir into {{work_dir}}
+    shell: mkdir -p {{work_dir}}
+    ignore_errors: True

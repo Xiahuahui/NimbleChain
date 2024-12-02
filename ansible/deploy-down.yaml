@@ -1,0 +1,19 @@
+---
+- hosts: dt
+  remote_user: root
+  
+  tasks:
+  - name: down
+    shell: docker-compose -f {{work_dir}}/docker-compose.yaml down 
+    args:
+      executable: /bin/bash
+    
+    # ignore_errors: True
+
+  - name: rm -rf config
+    shell: sudo rm -rf {{work_dir}}/build/config_path
+    become: true
+
+  - name: rm -rf binary
+    shell: rm -rf {{work_dir}}/build/binary/{{binary_dir}}
+    become: true

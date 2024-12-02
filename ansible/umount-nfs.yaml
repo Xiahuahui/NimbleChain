@@ -1,0 +1,8 @@
+---
+- hosts: dt
+  remote_user: root
+
+  tasks:
+  - name: umount {{work_dir}}/build
+    shell: sudo umount -f -l {{work_dir}}/build
+    ignore_errors: True
