@@ -1,6 +1,8 @@
 # NimbleChain
 
 ### Intro
+NimbleChain, which leverages a lightweight reinforcement learning technique to dynamically adjust the timeout threshold
+at each node in a distributed fashion.
 
 ### Directories
 
@@ -21,12 +23,12 @@
 
 ### Deploy-Tool
 
-> 本文档是基于ansible工具，用来部署测试tendermint系统，是一个主从模式, 一个部署和测试区块链tendermint工具，具有以下特性：
+> This document is based on the Ansible tool and is used to deploy and test the tendermint system in a master-slave mode. It is a tool for deploying and testing the blockchain tendermint system, with the following features:
 >
-> - 部署简化
-> - 支持使用ansible多节点部署区块链网络，包括docker镜像分发，docker daemon配置修改，启动和停止tendermint网络，nfs共享，冗余文件清理
-> - 配置文件模板化，简化多节点配置文件生成过程
-> - 当前支持tendermint
+> - Simplified deployment.
+> - Supports multi-node deployment of blockchain network using Ansible, including distributing Docker images, modifying Docker daemon configurations, and starting and stopping the tendermint network.
+> - Template-based configuration file to simplify the process of generating configuration files for multiple nodes.
+> - Currently supports Tendermint.
 > - https://zhuanlan.zhihu.com/p/606174368?utm_id=0
 > - https://blog.csdn.net/make_progress/article/details/124295978
 
@@ -43,62 +45,60 @@
   pip3 install jinja2
   ```
 
-  安装完成。接下来可以准备运行了。
+  Installation is complete. Next, you can prepare to run it.
 
 # Quick Start
 
-> 使用默认设置快速开始。多机运行模式（所有主机符合Runtime要求），使用单台主机运行DT docker容器，其他远程主机运行tendermint网络。
+> Use default settings to start quickly. In multi-node operation mode (all hosts meet the runtime requirements), run the DT Docker container on a single host, and run the Tendermint network on other remote hosts.
 
-- 环境配置
+- Environment configuration.
 
-  | 主机名 | IP            | 角色  |
-    | ------ |---------------| ---- |
-  | 主机A  | 10.46.173.108 | DT   |
-  | 主机B  | 10.77.110.163 | node0 |
-  | 主机C  | 10.77.110.164 | node1 |
+  | host_name | IP            | role  |
+    |-----------|---------------|-------|
+  | host_A    | 10.46.173.108 | DT    |
+  | host_B    | 10.77.110.163 | node0 |
+  | host_C    | 10.77.110.164 | node1 |
 
 
-1. ssh免密登录
+1. SSH passwordless login.
 
-将主机A的ssh公钥添加到B、C主机上，并配置B、C主机的ssh免密登录。
+Add the SSH public key of host A to hosts B and C, and configure passwordless SSH login for hosts B and C.
 
-2. ansible主机设置
+2. Ansible host configuration.
 
    ```shell
 
 
    vim /etc/ansible/hosts
 
-   # 输入以下内容
    [dt]
    10.77.110.163 ip=10.77.110.163
    10.77.110.164 ip=10.77.110.164
 
-   # 测试连通性
+   # test connectivity.
    ansible dt -m ping
    ```
-3. 配置主机A、B、C的环境
+3. Configure the environment for hosts A, B, and C.
 
-   以下所有操作都在主机A上执行, 工作目录为NimbleChain：
+   All the following operations are to be executed on host A, in the working directory NimbleChain.
 
    ```shell
-   # set work environment 设置工作环境   
+   # set work environment 
    make setup-dt
 
-   # download tendermint image and distribute them on host B、C [镜像分发]
+   # download tendermint image and distribute them on host B、C 
    make distribute-docker-images
 
    # setup work environment nodes host B、C
-   # !!! 这个操作会关闭目标主机B、C的docker服务，并开放docker服务的远程访问权限、替换daemon.json和docker service
    # update docker config [use reomte docker stat api]
    make setup-config
    ```
-- 启动 tendermint 网络进行测试
+- Start the Tendermint network for testing.
 
-    - 修改DT配置config.yaml
+    - Modify the DT configuration config.yaml.
 
-      有关config.yaml文件的说明请查看#【config.yaml说明】
-    - 生成tendermint节点配置
+      Please refer to the 【config.yaml】 Explanation for information about the config.yaml file.
+    - Generate Tendermint node configuration.
 
       ```shell
       # operations:
@@ -106,26 +106,26 @@
       # 2. generate docker-compose files 
       make generate-config
       ```
-    - 启动tendemint网络
+    - Start the Tendermint network.
 
       ```shell
       # use ansible to boot tendermint network on host B、C
       make deploy-up
       ```
-    - 从服务器上拉取单次的实验结果
+    - Pull the experimental results from the server.
       ```shell
       make start-log
       ```
-- 测试完成后【环境清理】
+- Clean up the environment after the test is completed.
 
-    1. 关闭tendermint网络
+    1. Shut down the Tendermint network.
 
        ```shell
        # use ansible to close tendermint docker containers on host B、C
        # stop&rm tendermint's docker container on each host
        make deploy-down
        ```
-    2. [可选]重置环境
+    2. [Optional]Reset the environment.
 
   ```shell
   # 1. rm tendermint docker image.
@@ -133,27 +133,23 @@
   # 3. (non-implements) restore docker config on each host
   make purge
   ```
-
-# 运行结果
-
-DT运行结果存放在result文件夹，文件格式为csv。
-
-# config.yaml说明
+  
+# Explanation of config.yaml.
 
 ```yaml
 version: '3'
 
 config:
-  tag: tendermint:test #镜像的版本的版本
-  core_num: 8     #  实验中的docker核数
-  block_size: 10000     #  实验中的区块大小
-  binary_tag: propose_timeout  #测试的tendermint的版本
-  app: kvstore     #abci端的应用类型
-  propose_timeout: 5 #每个节点上设置的初始化的propose_timeout 5s
-  service: fixed     #动态调整timeout的方式 [fixed、FireLedger、NimbleChain-J、NimbleChain-NA、NimbleChain-Full]
-  ByzantineNodeList: []  #拜占庭节点列表
-  CrashNodeList: [0, 3, 6, 9, 12, 15, 18, 22, 26, 29]     # 宕机节点列表
+  tag: tendermint:test #Version of the image version.
+  core_num: 8     #  Number of Docker cores in the experiment.
+  block_size: 10000     #  Block size in the experiment.
+  binary_tag: propose_timeout  #Version of Tendermint being tested.
+  app: kvstore     #Application type on the ABCI end.
+  propose_timeout: 5 #Initial propose_timeout set on each node. 5s
+  service: fixed     # Method to dynamically adjust timeout. [fixed、FireLedger、NimbleChain-J、NimbleChain-NA、NimbleChain-Full]
+  ByzantineNodeList: []  #List of Byzantine nodes.
+  CrashNodeList: [0, 3, 6, 9, 12, 15, 18, 22, 26, 29]     # List of Crash nodes.
   reward:
-    version: "v3"    #奖励函数的版本
-    para: -2         #奖励函数中a的设置
+    version: "v3"    #Version of the reward function.
+    para: -2         #Value of parameter "a" in the reward function.
 ```
