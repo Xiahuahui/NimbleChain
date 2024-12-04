@@ -1,0 +1,30 @@
+#!/bin/bash
+
+interface=ens5f1
+
+sudo tc qdisc add dev $interface root handle 1: htb default 30
+sudo tc class add dev $interface parent 1: classid 1:1 htb rate 1000mbit
+sudo tc class add dev $interface parent 1:1 classid 1:10 htb rate 500mbit
+sudo tc class add dev $interface parent 1:1 classid 1:20 htb rate 400mbit
+sudo tc class add dev $interface parent 1:1 classid 1:30 htb rate 200mbit
+
+
+sudo tc qdisc add dev eth0 parent 1:10 handle 10: netem delay 50ms
+sudo tc qdisc add dev eth0 parent 1:20 handle 20: netem delay 100ms
+
+sudo tc filter add dev eth0 protocol ip parent 1: prio 1 u32 match ip src 192.167.10.2 match ip dst 192.167.10.3  flowid 1:10
+sudo tc filter add dev eth0 protocol ip parent 1: prio 1 u32 match ip src 192.167.10.2 match ip dst 192.167.10.4  flowid 1:20
+sudo tc filter add dev eth0 protocol ip parent 1: prio 1 u32 match ip src 192.167.10.2 match ip dst 192.167.10.5  flowid 1:20
+
+sudo tc filter add dev eth0 protocol ip parent 1: prio 1 u32 match ip src 192.167.10.3 match ip dst 192.167.10.2  flowid 1:10
+sudo tc filter add dev eth0 protocol ip parent 1: prio 1 u32 match ip src 192.167.10.3 match ip dst 192.167.10.4  flowid 1:20
+sudo tc filter add dev eth0 protocol ip parent 1: prio 1 u32 match ip src 192.167.10.3 match ip dst 192.167.10.5  flowid 1:20
+
+sudo tc filter add dev eth0 protocol ip parent 1: prio 1 u32 match ip src 192.167.10.4 match ip dst 192.167.10.2  flowid 1:20
+sudo tc filter add dev eth0 protocol ip parent 1: prio 1 u32 match ip src 192.167.10.4 match ip dst 192.167.10.3  flowid 1:20
+sudo tc filter add dev eth0 protocol ip parent 1: prio 1 u32 match ip src 192.167.10.4 match ip dst 192.167.10.5  flowid 1:10
+
+sudo tc filter add dev eth0 protocol ip parent 1: prio 1 u32 match ip src 192.167.10.5 match ip dst 192.167.10.2  flowid 1:20
+sudo tc filter add dev eth0 protocol ip parent 1: prio 1 u32 match ip src 192.167.10.5 match ip dst 192.167.10.3  flowid 1:20
+sudo tc filter add dev eth0 protocol ip parent 1: prio 1 u32 match ip src 192.167.10.5 match ip dst 192.167.10.4  flowid 1:10
+

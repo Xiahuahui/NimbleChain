@@ -118,7 +118,7 @@
       ```
 - 测试完成后【环境清理】
 
-    1. 关闭fabric网络
+    1. 关闭tendermint网络
 
        ```shell
        # use ansible to close tendermint docker containers on host B、C

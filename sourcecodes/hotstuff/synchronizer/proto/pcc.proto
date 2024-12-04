@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+option go_package="/proto";
+
+
+service PccService {
+  rpc InitPCC(InitRequest) returns (InitResponse) {}
+  rpc RunPcc (RunRequest) returns (RunResponse) {}
+  rpc RunSpc (RunSpcRequest) returns (RunSpcResponse) {}
+  rpc RunRLJ  (RunRLJRequest) returns (RunRLJResponse) {}
+}
+
+message InitRequest {
+  int64 m_i = 1;
+  int64 s_m_i = 2;
+  int64 epoch_size = 3;
+  int64 init_timeout = 4;
+  bool is_byz = 5;
+  bool is_crash = 8;
+  int64 cold_start_phase = 6;
+  double delay_time = 9;
+  string version = 7;
+  string method = 10;
+  double para_a = 11;
+}
+
+message InitResponse{
+  int64 m_i = 1;
+  int64 mi_of_number = 2;
+  repeated int64 epoch_size_list = 3;
+  int64 init_timeout = 4;
+  double delay_time = 5;
+}
+message Cost{
+  int64 view_change_cost = 1;
+  int64 threat_cost = 2;
+  int64 discretionary = 3;
+  bool  flag = 4;
+}
+
+message MIData{
+  repeated int64  height = 1;
+  repeated bool  is_leader = 2;
+  repeated int64  proposer_list=3;
+  repeated bool is_byz_node = 4;
+  repeated double actaul_timeout_list = 5;
+  repeated double predict_timeout_list = 6;
+  repeated double byz_timeout_list =7;
+  repeated int64  round = 8;
+  repeated Cost cost_list = 9;
+  int64 timeout_value = 10;
+  repeated double latency_list = 11;
+  repeated int64  tx_num_list = 12;
+  double tps = 13;
+}
+
+
+message HeightData{
+  int64 height = 1;
+  bool is_leader = 2;
+  int64 proposer = 3;
+  bool is_byz_node = 4;
+  bool is_crash_node = 16;
+  double actaul_timeout = 5;
+  double predict_timeout = 6;
+  double byz_timeout = 7;
+  int64 round = 8;
+  Cost cost = 9;
+  int64 timeout_value = 10;
+  double latency = 11;
+  int64 tx_num = 12;
+  double tps = 13;
+  double delay_time = 14;
+  double pdt = 15;
+  double min = 20;
+  double max = 17;
+  double avg = 18;
+  double std = 19;
+  double deliver_time = 21;
+}
+
+//下面这连个需求，
+message RunRequest {
+  repeated MIData m_i_data = 1;
+}
+
+message RunResponse {
+   int64 m_i = 1;
+   int64 mi_of_number = 2;
+   repeated int64 epoch_size_list = 3;
+   int64 init_timeout = 4;
+}
+//这个需求应该和MI的一样的。
+message RunSpcRequest{
+  MIData m_i_data = 1;
+}
+
+//返回的具体是怎么变 0，1，2，3
+message RunSpcResponse{
+  int64 code = 1;
+}
+
+message RunRLJRequest{
+  HeightData height_data = 1;
+}
+
+message RunRLJResponse{
+  int64 code = 1;
+  double timeout = 2;
+  double byz_timeout =3;
+  double delay_time = 4;
+}
+
+
+
+

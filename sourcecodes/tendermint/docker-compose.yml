@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  node0:
+    container_name: node0
+    image: "centos:7"
+    environment:
+      - TERM=xterm
+    command: "top -b"
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.2
+
+  node1:
+    container_name: node1
+    image: "centos:7"
+    environment:
+      - TERM=xterm
+    command: "top -b"
+    networks:
+      localnet:
+        ipv4_address: 192.167.10.3
+
+networks:
+  localnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 192.167.10.0/16
+
